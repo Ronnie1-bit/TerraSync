@@ -12,7 +12,7 @@ app = FastAPI(
         "name": "Biplab Kumar Sethy",
         "url": "https://github.com/Ronnie1-bit",
     },
-))
+)
 class StudentCurrentWeather(BaseModel):
     name : str = Field(..., min_length = 1, description = "Name Must Contain At least 1 letter")
     roll_no: int = Field(..., gt=0, description = "RollNo must be greater than 1")
