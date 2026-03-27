@@ -4,7 +4,15 @@ from database import get_db, init_db
 from service import get_weather
 from pydantic import Field, BaseModel
 from typing import List
-app= FastAPI(title="TerraSync")
+app= FastAPI(app = FastAPI(
+    title="TerraSync Weather Engine",
+    description="A high-performance asynchronous API for real-time weather analytics and student data management.",
+    version="1.0.0",
+    contact={
+        "name": "Biplab Kimar Sethy",
+        "url": "https://github.com/Ronnie1-bit",
+    },
+))
 class StudentCurrentWeather(BaseModel):
     name : str = Field(..., min_length = 1, description = "Name Must Contain At least 1 letter")
     roll_no: int = Field(..., gt=0, description = "RollNo must be greater than 1")
