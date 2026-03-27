@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi.responses import RedirectResponse
 from database import get_db, init_db
 from service import get_weather
 from pydantic import Field, BaseModel
@@ -18,7 +19,7 @@ async def startup_event():
     await init_db()
 @app.get("/")
 async def root():
-    return {"message": "TerraSync Backend is Live!", "docs": "/docs"}
+    return RedirectResponse(url="/docs")
 @app.post("/weather/submit-name", status_code = status.HTTP_201_CREATED)
 async def write(students: List[StudentCurrentWeather], db = Depends(get_db)):
     for s in students:
