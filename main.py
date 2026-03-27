@@ -16,6 +16,9 @@ class StudentCurrentWeather(BaseModel):
 @app.on_event("startup")
 async def startup_event():
     await init_db()
+@app.get("/")
+async def root():
+    return {"message": "TerraSync Backend is Live!", "docs": "/docs"}
 @app.post("/weather/submit-name", status_code = status.HTTP_201_CREATED)
 async def write(students: List[StudentCurrentWeather], db = Depends(get_db)):
     for s in students:
